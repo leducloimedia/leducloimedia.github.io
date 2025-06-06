@@ -7,19 +7,60 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     /* === RESET & BASE STYLES === */
+    :root {
+      /* Biến màu sắc cho chế độ sáng */
+      --bg-color: #f9f9f9;
+      --text-color: #333;
+      --sidebar-bg: #2c3e50;
+      --sidebar-overlay: linear-gradient(135deg, rgba(44,62,80,0.9) 0%, rgba(52,73,94,0.9) 100%);
+      --primary-color: #3498db;
+      --section-bg: white;
+      --card-bg: #fff;
+      --card-border: #eee;
+      --tool-bg: #f8f9fa;
+      --timeline-bg: #f8f9fa;
+      --contact-bg: #f8f9fa;
+      --divider-color: #3498db;
+      --profile-border: rgba(255,255,255,0.1);
+      --nav-bg: rgba(255,255,255,0.05);
+      --nav-hover: rgba(255,255,255,0.15);
+      --shadow-color: rgba(0,0,0,0.05);
+    }
+
+    .dark-mode {
+      /* Biến màu sắc cho chế độ tối */
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --sidebar-bg: #1a1a2e;
+      --sidebar-overlay: linear-gradient(135deg, rgba(26,26,46,0.9) 0%, rgba(30,30,50,0.9) 100%);
+      --primary-color: #4da6ff;
+      --section-bg: #1e1e2c;
+      --card-bg: #252540;
+      --card-border: #2d2d4a;
+      --tool-bg: #2a2a45;
+      --timeline-bg: #2a2a45;
+      --contact-bg: #2a2a45;
+      --divider-color: #4da6ff;
+      --profile-border: rgba(255,255,255,0.15);
+      --nav-bg: rgba(255,255,255,0.08);
+      --nav-hover: rgba(77,166,255,0.25);
+      --shadow-color: rgba(0,0,0,0.3);
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
     }
 
     body {
-      background-color: #f9f9f9;
-      color: #333;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       line-height: 1.6;
       overflow-x: hidden;
-      background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+      background: linear-gradient(135deg, var(--bg-color) 0%, var(--bg-color) 100%);
     }
 
     /* === MAIN CONTAINER === */
@@ -29,12 +70,12 @@
       min-height: 100vh;
       max-width: 1600px;
       margin: 0 auto;
-      box-shadow: 0 0 50px rgba(0,0,0,0.05);
+      box-shadow: 0 0 50px var(--shadow-color);
     }
 
     /* === SIDEBAR - PHẦN CHỨA ẢNH ĐẠI DIỆN VÀ MENU === */
     .sidebar {
-      background: #2c3e50;
+      background: var(--sidebar-bg);
       padding: 40px 20px;
       display: flex;
       flex-direction: column;
@@ -50,7 +91,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(44,62,80,0.9) 0%, rgba(52,73,94,0.9) 100%);
+      background: var(--sidebar-overlay);
       z-index: 1;
     }
 
@@ -69,7 +110,7 @@
       border-radius: 50%;
       overflow: hidden;
       margin: 0 auto 20px;
-      border: 5px solid rgba(255,255,255,0.1);
+      border: 5px solid var(--profile-border);
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       transition: all 0.4s ease;
       position: relative;
@@ -96,7 +137,7 @@
     }
 
     .profile-title {
-      color: #3498db;
+      color: var(--primary-color);
       font-size: 18px;
       font-weight: 400;
     }
@@ -127,7 +168,7 @@
       align-items: center;
       border-radius: 8px;
       transition: all 0.3s ease;
-      background: rgba(255,255,255,0.05);
+      background: var(--nav-bg);
     }
 
     .nav-menu a i {
@@ -135,12 +176,17 @@
       font-size: 18px;
       width: 24px;
       text-align: center;
+      transition: transform 0.3s ease;
     }
 
     .nav-menu a:hover, .nav-menu a.active {
-      background: rgba(255,255,255,0.15);
+      background: var(--nav-hover);
       transform: translateX(10px);
-      color: #3498db;
+      color: var(--primary-color);
+    }
+    
+    .nav-menu a:hover i {
+      transform: scale(1.2);
     }
 
     /* Social icons - BIỂU TƯỢNG MẠNG XÃ HỘI */
@@ -162,18 +208,37 @@
       align-items: center;
       justify-content: center;
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .social-icons a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(52,152,219,0.3) 0%, transparent 70%);
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .social-icons a:hover {
-      background: #3498db;
+      background: var(--primary-color);
       transform: translateY(-5px);
+    }
+    
+    .social-icons a:hover::before {
+      opacity: 1;
     }
 
     /* === MAIN CONTENT AREA - KHU VỰC NỘI DUNG CHÍNH === */
     .main-content {
       padding: 60px 50px;
       position: relative;
-      background: white;
+      background: var(--section-bg);
       overflow-y: auto;
     }
 
@@ -200,7 +265,7 @@
       font-size: 42px;
       font-weight: 700;
       margin-bottom: 25px;
-      color: #2c3e50;
+      color: var(--text-color);
       position: relative;
       padding-bottom: 15px;
     }
@@ -212,27 +277,54 @@
       left: 0;
       width: 70px;
       height: 4px;
-      background: #3498db;
+      background: var(--primary-color);
       border-radius: 2px;
+      transition: width 0.5s ease;
+    }
+    
+    .section h1:hover::after {
+      width: 150px;
     }
 
     .section h2 {
       font-size: 28px;
       font-weight: 600;
       margin-bottom: 20px;
-      color: #2c3e50;
+      color: var(--text-color);
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--primary-color);
+      transition: width 0.5s ease;
+    }
+    
+    .section h2:hover::after {
+      width: 100%;
     }
 
     .section h3 {
       font-size: 22px;
       font-weight: 600;
       margin: 30px 0 20px;
-      color: #3498db;
+      color: var(--primary-color);
+      transition: all 0.3s ease;
+    }
+    
+    .section h3:hover {
+      transform: translateX(10px);
     }
 
     .section p {
       font-size: 17px;
-      color: #555;
+      color: var(--text-color);
       margin-bottom: 20px;
       line-height: 1.8;
     }
@@ -246,56 +338,109 @@
     }
 
     .project-card {
-      background: #fff;
+      background: var(--card-bg);
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      box-shadow: 0 10px 30px var(--shadow-color);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 1px solid #eee;
+      border: 1px solid var(--card-border);
       cursor: pointer;
       position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+    
+    .project-card.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .project-card:hover {
       transform: translateY(-10px);
       box-shadow: 0 15px 40px rgba(0,0,0,0.15);
     }
+    
+    /* Tạo hiệu ứng ánh sáng */
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(52,152,219,0.1) 0%, transparent 70%);
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .project-card:hover::before {
+      opacity: 1;
+    }
 
     .project-img {
       width: 100%;
       height: 200px;
       object-fit: cover;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid var(--card-border);
+      transition: transform 0.5s ease;
+    }
+    
+    .project-card:hover .project-img {
+      transform: scale(1.05);
     }
 
     .project-content {
       padding: 25px;
+      position: relative;
+      z-index: 1;
     }
 
     .project-title {
       font-size: 20px;
       font-weight: 600;
       margin-bottom: 10px;
-      color: #2c3e50;
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+    
+    .project-card:hover .project-title {
+      color: var(--primary-color);
     }
 
     .project-desc {
-      color: #666;
+      color: var(--text-color);
+      opacity: 0.8;
       font-size: 15px;
       margin-bottom: 20px;
     }
 
     .project-link {
       display: inline-block;
-      color: #3498db;
+      color: var(--primary-color);
       text-decoration: none;
       font-weight: 500;
       transition: all 0.3s ease;
+      position: relative;
+      padding-right: 25px;
+    }
+    
+    .project-link i {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: transform 0.3s ease;
     }
 
     .project-link:hover {
-      color: #2c3e50;
+      color: var(--text-color);
       transform: translateX(5px);
+    }
+    
+    .project-link:hover i {
+      transform: translate(5px, -50%);
     }
 
     /* === VIDEO MODAL - PANEL XEM VIDEO DỰ ÁN === */
@@ -325,6 +470,14 @@
       overflow: hidden;
       position: relative;
       box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      transform: scale(0.9);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .video-modal.active .modal-content {
+      transform: scale(1);
+      opacity: 1;
     }
 
     .modal-header {
@@ -394,21 +547,49 @@
     }
 
     .tool-card {
-      background: #f8f9fa;
+      background: var(--tool-bg);
       border-radius: 12px;
       padding: 25px;
       text-align: center;
       transition: transform 0.3s ease;
-      border: 1px solid #eee;
+      border: 1px solid var(--card-border);
       display: flex;
       flex-direction: column;
       align-items: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .tool-card.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .tool-card:hover {
       transform: translateY(-5px);
-      background: #fff;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      background: var(--card-bg);
+      box-shadow: 0 10px 30px var(--shadow-color);
+    }
+    
+    /* Tạo hiệu ứng ánh sáng */
+    .tool-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(52,152,219,0.1) 0%, transparent 70%);
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .tool-card:hover::before {
+      opacity: 1;
     }
 
     .tool-icon {
@@ -417,17 +598,28 @@
       object-fit: contain;
       margin-bottom: 15px;
       border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+    
+    .tool-card:hover .tool-icon {
+      transform: scale(1.1);
     }
 
     .tool-name {
       font-size: 18px;
       font-weight: 600;
       margin-bottom: 10px;
-      color: #2c3e50;
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+    
+    .tool-card:hover .tool-name {
+      color: var(--primary-color);
     }
 
     .tool-desc {
-      color: #666;
+      color: var(--text-color);
+      opacity: 0.8;
       font-size: 14px;
       line-height: 1.6;
     }
@@ -441,31 +633,63 @@
     }
 
     .contact-info li {
-      background: #f8f9fa;
+      background: var(--contact-bg);
       padding: 25px;
       border-radius: 12px;
       transition: transform 0.3s ease;
-      border: 1px solid #eee;
+      border: 1px solid var(--card-border);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .contact-info li.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .contact-info li:hover {
       transform: translateY(-5px);
-      background: #fff;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      background: var(--card-bg);
+      box-shadow: 0 10px 30px var(--shadow-color);
+    }
+    
+    /* Tạo hiệu ứng ánh sáng */
+    .contact-info li::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(52,152,219,0.1) 0%, transparent 70%);
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .contact-info li:hover::before {
+      opacity: 1;
     }
 
     .contact-info strong {
       display: block;
       font-weight: 600;
       margin-bottom: 10px;
-      color: #3498db;
+      color: var(--primary-color);
       font-size: 18px;
+    }
+    
+    .contact-info li:hover strong {
+      transform: translateX(5px);
     }
 
     /* Divider - ĐƯỜNG PHÂN CÁCH */
     .divider {
       height: 1px;
-      background: linear-gradient(to right, transparent, #3498db, transparent);
+      background: linear-gradient(to right, transparent, var(--divider-color), transparent);
       margin: 40px 0;
       opacity: 0.3;
     }
@@ -474,9 +698,10 @@
     .footer {
       text-align: center;
       padding: 30px;
-      color: #777;
+      color: var(--text-color);
+      opacity: 0.7;
       font-size: 15px;
-      border-top: 1px solid #eee;
+      border-top: 1px solid var(--card-border);
       margin-top: 50px;
     }
 
@@ -491,7 +716,7 @@
       content: '';
       position: absolute;
       width: 4px;
-      background: #3498db;
+      background: var(--primary-color);
       top: 0;
       bottom: 0;
       left: 50%;
@@ -503,6 +728,14 @@
       position: relative;
       width: 50%;
       box-sizing: border-box;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+    
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .timeline-item:nth-child(odd) {
@@ -515,15 +748,116 @@
 
     .timeline-content {
       padding: 20px;
-      background: #f8f9fa;
+      background: var(--timeline-bg);
       border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 15px var(--shadow-color);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .timeline-content:hover {
+      transform: translateX(10px);
+    }
+    
+    /* Tạo hiệu ứng ánh sáng */
+    .timeline-content::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(52,152,219,0.1) 0%, transparent 70%);
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .timeline-content:hover::before {
+      opacity: 1;
     }
 
     .timeline-date {
       font-weight: 600;
-      color: #3498db;
+      color: var(--primary-color);
       margin-bottom: 10px;
+      transition: all 0.3s ease;
+    }
+    
+    .timeline-content:hover .timeline-date {
+      transform: translateX(5px);
+    }
+
+    /* Nút chuyển đổi Dark Mode - ĐÃ SỬA VỊ TRÍ */
+    .theme-switch-wrapper {
+      position: fixed; /* Thay đổi từ absolute sang fixed */
+      top: 20px;
+      right: 20px;
+      z-index: 1001; /* Tăng z-index để nổi lên trên tất cả */
+      display: flex;
+      align-items: center;
+    }
+
+    .theme-switch {
+      display: inline-block;
+      height: 34px;
+      position: relative;
+      width: 60px;
+    }
+
+    .theme-switch input {
+      display: none;
+    }
+
+    .slider {
+      background-color: #ccc;
+      bottom: 0;
+      cursor: pointer;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      background-color: white;
+      bottom: 4px;
+      content: "";
+      height: 26px;
+      left: 4px;
+      position: absolute;
+      transition: .4s;
+      width: 26px;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--primary-color);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    .theme-icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #333;
+      font-size: 16px;
+      z-index: 2;
+    }
+
+    .sun-icon {
+      left: 8px;
+    }
+
+    .moon-icon {
+      right: 8px;
+      color: white;
     }
 
     /* RESPONSIVE DESIGN - THIẾT KẾ ĐÁP ỨNG */
@@ -562,6 +896,15 @@
       .modal-content {
         width: 95%;
       }
+      
+      .theme-switch-wrapper {
+        top: 15px;
+        right: 15px;
+      }
+      
+      .personal-info {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 576px) {
@@ -580,12 +923,335 @@
       .projects-grid, .tools-container {
         grid-template-columns: 1fr;
       }
+      
+      .theme-switch {
+        width: 50px;
+        height: 28px;
+      }
+      
+      .slider:before {
+        width: 20px;
+        height: 20px;
+      }
+      
+      input:checked + .slider:before {
+        transform: translateX(22px);
+      }
+    }
+    
+        /* === CẢI TIẾN PHẦN GIỚI THIỆU === */
+    
+    /* Animation cho phần giới thiệu */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    /* Bố cục mới cho phần giới thiệu */
+    .personal-intro {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      margin-top: 30px;
+    }
+    
+    .intro-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 15px 40px var(--shadow-color);
+      border: 1px solid var(--card-border);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+    
+    .intro-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Tạo hiệu ứng nổi cho card */
+    .intro-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    }
+    
+    /* Thêm hiệu ứng ánh sáng */
+    .intro-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(52,152,219,0.1) 0%, transparent 70%);
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .intro-card:hover::before {
+      opacity: 1;
+    }
+    
+    /* Style cho tiêu đề card */
+    .intro-card h2 {
+      font-size: 28px;
+      color: var(--primary-color);
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--divider-color);
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    
+    .intro-card h2 i {
+      margin-right: 12px;
+      font-size: 32px;
+      animation: float 4s ease-in-out infinite;
+    }
+    
+    /* Style cho các mục thông tin */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .info-item {
+      display: flex;
+      flex-direction: column;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .info-item:hover {
+      transform: translateX(10px);
+    }
+    
+    .info-label {
+      font-weight: 600;
+      color: var(--text-color);
+      opacity: 0.7;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .info-label i {
+      margin-right: 8px;
+      font-size: 16px;
+      color: var(--primary-color);
+      transition: transform 0.3s ease;
+    }
+    
+    .info-item:hover .info-label i {
+      transform: scale(1.2);
+    }
+    
+    .info-value {
+      color: var(--text-color);
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.6;
+      transition: all 0.3s ease;
+    }
+    
+    .info-item:hover .info-value {
+      color: var(--primary-color);
+    }
+    
+    .info-value a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: all 0.3s;
+      position: relative;
+    }
+    
+    .info-value a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: width 0.3s ease;
+    }
+    
+    .info-value a:hover::after {
+      width: 100%;
+    }
+    
+    /* Phần học vấn */
+    .education-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+    
+    .education-item {
+      background: rgba(52,152,219,0.05);
+      border-radius: 12px;
+      padding: 25px;
+      position: relative;
+      overflow: hidden;
+      border-left: 4px solid var(--primary-color);
+      transition: all 0.3s ease;
+    }
+    
+    .education-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .education-year {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .education-item:hover .education-year {
+      transform: translateX(5px);
+    }
+    
+    .education-title {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+    
+    .education-item:hover .education-title {
+      transform: translateX(5px);
+    }
+    
+    .education-details {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+    
+    .education-item:hover .education-details {
+      transform: translateX(5px);
+    }
+    
+    .education-description {
+      color: var(--text-color);
+      opacity: 0.9;
+      font-size: 16px;
+      line-height: 1.7;
+      transition: all 0.3s ease;
+    }
+    
+    .education-item:hover .education-description {
+      transform: translateX(5px);
+    }
+    
+    /* Hiệu ứng động cho các phần tử */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* === RESPONSIVE DESIGN === */
+    @media (max-width: 992px) {
+      .portfolio-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .sidebar {
+        padding: 30px 20px;
+        text-align: center;
+      }
+      
+      .nav-menu a {
+        justify-content: center;
+      }
+      
+      .main-content {
+        padding: 40px 30px;
+      }
+      
+      .theme-switch-wrapper {
+        top: 15px;
+        right: 15px;
+      }
+      
+      .intro-card {
+        padding: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .intro-card {
+        padding: 25px;
+      }
+      
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .main-content {
+        padding: 30px 20px;
+      }
+      
+      .section h1 {
+        font-size: 32px;
+      }
+      
+      .section h2 {
+        font-size: 24px;
+      }
+      
+      .intro-card {
+        padding: 20px;
+      }
+      
+      .info-value {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Nút chuyển đổi Dark Mode -->
+  <div class="theme-switch-wrapper">
+    <label class="theme-switch" for="checkbox">
+      <input type="checkbox" id="checkbox" />
+      <div class="slider"></div>
+      <i class="fas fa-sun sun-icon theme-icon"></i>
+      <i class="fas fa-moon moon-icon theme-icon"></i>
+    </label>
+  </div>
+
   <div class="portfolio-container">
-    <!-- Sidebar - PHẦN THANH BÊN TRÁI -->
+    <!-- Sidebar -->
     <div class="sidebar">
       <div class="profile-container">
         <div class="profile-img-container">
@@ -595,12 +1261,13 @@
                id="profileImage">
         </div>
         <h1 class="profile-name">Lê Đức Lợi</h1>
-        <p class="profile-title">Editor</p>
+        <p class="profile-title">Media - Quay Phim - Editor</p>
       </div>
 
       <!-- Menu điều hướng chính -->
       <ul class="nav-menu">
-        <li><a href="#" class="nav-link active" data-target="about"><i class="fas fa-user"></i> Thông tin cá nhân</a></li>
+        <li><a href="#" class="nav-link active" data-target="about"><i class="fas fa-user"></i> THÔNG TIN CÁ NHÂN</a></li>
+        <li><a href="#" class="nav-link" data-target="skill"><i class="fas fa-tools"></i> KỸ NĂNG</a></li>
         <li><a href="#" class="nav-link" data-target="resume"><i class="fas fa-file-alt"></i> KINH NGHIỆM</a></li>
         <li><a href="#" class="nav-link" data-target="works"><i class="fas fa-briefcase"></i> DỰ ÁN</a></li>
         <li><a href="#" class="nav-link" data-target="contact"><i class="fas fa-envelope"></i> LIÊN HỆ</a></li>
@@ -608,7 +1275,7 @@
 
       <!-- Các liên kết mạng xã hội -->
       <div class="social-icons">
-        <a href="#"onclick="window.open('https://www.facebook.com/le.loi.070802', '_blank')"><i class="fab fa-facebook"></i></a>
+        <a href="#" onclick="window.open('https://www.facebook.com/le.loi.070802', '_blank')"><i class="fab fa-facebook"></i></a>
         <a href="#"><i class="fab fa-youtube"></i></a>
         <a href="#"><i class="fab fa-vimeo-v"></i></a>
         <a href="#"><i class="fab fa-behance"></i></a>
@@ -620,19 +1287,68 @@
       <!-- About Section - PHẦN GIỚI THIỆU -->
       <div id="about" class="content-section active">
         <section class="section">
-          <h1>Giới Thiệu</h1>
-          <p>Tôi là Lê Đức Lợi,....</p>
+          <h1><i class="fas fa-user-circle"></i> Giới Thiệu</h1>
+          
+          <!-- Bố cục mới cho phần giới thiệu -->
+          <div class="personal-intro">
+            <!-- Thông tin cá nhân -->
+            <div class="intro-card" id="introCard1">
+              <h2><i class="fas fa-info-circle"></i> Thông Tin Cá Nhân</h2>
+              
+              <div class="info-grid">
+                <div class="info-item">
+                  <div class="info-label"><i class="fas fa-user"></i> Họ tên</div>
+                  <div class="info-value">Lê Đức Lợi</div>
+                </div>
+                
+                <div class="info-item">
+                  <div class="info-label"><i class="fas fa-map-marker-alt"></i> Địa chỉ</div>
+                  <div class="info-value">Thương Thanh, Long Biên, Hà Nội</div>
+                </div>
+                
+                <div class="info-item">
+                  <div class="info-label"><i class="fas fa-phone"></i> Điện thoại</div>
+                  <div class="info-value">+84 347 807 422</div>
+                </div>
+                
+                <div class="info-item">
+                  <div class="info-label"><i class="fas fa-envelope"></i> Email</div>
+                  <div class="info-value">leducloi390@gmail.com</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Học vấn -->
+            <div class="intro-card" id="introCard2">
+              <h2><i class="fas fa-graduation-cap"></i> Học Vấn</h2>
+              
+              <div class="education-container">
+                <div class="education-item">
+                  <div class="education-year">2022</div>
+                  <div class="education-title">Tốt Nghiệp</div>
+                  <div class="education-details">Đại học Kinh doanh và Công nghệ Hà Nội</div>
+                  <div class="education-description">
+                    Chuyên ngành Công Nghệ Thông Tin.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         <div class="divider"></div>
+      </div>
 
+      <!-- Skill - Kỹ Năng -->
+      <div id="skill" class="content-section">
+        <div class="divider"></div>
         <section class="section">
-          <h2>Kỹ Năng</h2>
+          <h1>Kỹ Năng</h1>
           <h3>Thành Thạo Các Công Cụ Chỉnh Sửa Video</h3>
           
           <div class="tools-container">
             <!-- Adobe Premiere Pro -->
-            <div class="tool-card">
+            <div class="tool-card" id="tool1">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Adobe_Premiere_Pro_CC_icon.svg/210px-Adobe_Premiere_Pro_CC_icon.svg.png" 
                    alt="Adobe Premiere Pro" 
                    class="tool-icon">
@@ -640,17 +1356,8 @@
               <p class="tool-desc">Chuyên gia chỉnh sửa video, quản lý dự án phức tạp và tích hợp workflow.</p>
             </div>
             
-            <!-- Final Cut Pro -->
-            <!-- <div class="tool-card">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Final_Cut_Pro_X_Icon.png/210px-Final_Cut_Pro_X_Icon.png" 
-                   alt="Final Cut Pro" 
-                   class="tool-icon">
-              <h3 class="tool-name">Final Cut Pro</h3>
-              <p class="tool-desc">Sử dụng thành thạo cho dự án tốc độ cao, chỉnh màu nâng cao và hiệu ứng.</p>
-            </div> -->
-            
             <!-- Adobe After Effects -->
-            <div class="tool-card">
+            <div class="tool-card" id="tool2">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Adobe_After_Effects_CC_icon.svg/210px-Adobe_After_Effects_CC_icon.svg.png" 
                    alt="Adobe After Effects" 
                    class="tool-icon">
@@ -659,53 +1366,25 @@
             </div>
             
             <!-- DaVinci Resolve -->
-            <div class="tool-card">
+            <div class="tool-card" id="tool3">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/DaVinci_Resolve_17_logo.svg/240px-DaVinci_Resolve_17_logo.svg.png" 
                    alt="DaVinci Resolve" 
                    class="tool-icon">
               <h3 class="tool-name">DaVinci Resolve</h3>
               <p class="tool-desc">Chỉnh màu chuyên nghiệp, xử lý hậu kỳ và chỉnh sửa video cấp độ cao.</p>
             </div>
+
+            <!-- CapCut -->
+            <div class="tool-card" id="tool4">
+              <img src="https://cdn.tgdd.vn/GameApp/2/225686/Screentshots/capcut-chinh-sua-video-mien-phi-don-gian-chuyen-nghiep-225686-logo-08-07-2020.png"
+                  alt="CapCut" 
+                  class="tool-icon">
+              <h3 class="tool-name">CapCut</h3>
+              <p class="tool-desc">Công cụ chỉnh sửa video đơn giản, mạnh mẽ với nhiều hiệu ứng và template sáng tạo.</p>
+            </div>
           </div>
         </section>
-
         <div class="divider"></div>
-
-        <section class="section">
-          <h2>Lĩnh Vực Chuyên Môn</h2>
-          
-          <div class="projects-grid">
-            <div class="project-card">
-              <img src="https://images.unsplash.com/photo-1579033462043-0f11a7862f7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-                   alt="Sản xuất video" 
-                   class="project-img">
-              <div class="project-content">
-                <h3 class="project-title">Chỉnh Sửa Video</h3>
-                <p class="project-desc">.....</p>
-              </div>
-            </div>
-            
-            <!-- <div class="project-card">
-              <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" 
-                   alt="Quản lý sáng tạo" 
-                   class="project-img">
-              <div class="project-content">
-                <h3 class="project-title">Quản Lý Sáng Tạo</h3>
-                <p class="project-desc">Dẫn dắt đội ngũ sáng tạo để đạt được tầm nhìn nghệ thuật.</p>
-              </div>
-            </div>
-            
-            <div class="project-card">
-              <img src="https://images.unsplash.com/photo-1551817958-d9d86fb29431?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-                   alt="Chiến lược truyền thông" 
-                   class="project-img">
-              <div class="project-content">
-                <h3 class="project-title">Chiến Lược Truyền Thông</h3>
-                <p class="project-desc">Phát triển chiến lược truyền thông hiệu quả cho thương hiệu.</p>
-              </div>
-            </div> -->
-          </div>
-        </section>
       </div>
 
       <!-- Resume Section - PHẦN KINH NGHIỆM -->
@@ -714,41 +1393,14 @@
           <h1>Kinh Nghiệm Làm Việc</h1>
           
           <div class="timeline">
-            <div class="timeline-item">
+            <div class="timeline-item" id="timeline1">
               <div class="timeline-content">
-                <div class="timeline-date">2022</div>
-                <h3>Tốt Nghiệp</h3>
-                <strong><p>Đại học Kinh doanh và Công nghệ Hà Nội.</p></strong>
-                <p>.....</p>
+                <div class="timeline-date">2025 - Hiện tại</div>
+                <h3>Học Viên Editor</h3>
+                <strong><p>CÔNG TY TNHH TÚ THANH MEDIA</p></strong>
+                <p>Tham gia các khóa học nâng cao kỹ năng chỉnh sửa video</p>
               </div>
             </div>
-
-            <div class="timeline-item">
-              <div class="timeline-content">
-                <div class="timeline-date">2025</div>
-                <h3>Học Việc</h3>
-                <strong><p>Tú Thanh Media</p></strong>
-                <p>.....</p>
-              </div>
-            </div>
-            
-            <!-- <div class="timeline-item">
-              <div class="timeline-content">
-                <div class="timeline-date">2016 - 2019</div>
-                <h3>Nhà sản xuất Media</h3>
-                <p>Creative Solutions Agency</p>
-                <p>Quản lý toàn bộ quy trình sản xuất video từ tiền kỳ đến hậu kỳ. Làm việc với khách hàng để phát triển ý tưởng và đảm bảo sản phẩm đáp ứng yêu cầu.</p>
-              </div>
-            </div> -->
-            
-            <!-- <div class="timeline-item">
-              <div class="timeline-content">
-                <div class="timeline-date">2013 - 2016</div>
-                <h3>Biên tập viên Video</h3>
-                <p>Digital Media Productions</p>
-                <p>Chịu trách nhiệm biên tập và hậu kỳ cho các dự án video. Làm việc với nhiều định dạng từ quảng cáo ngắn đến phim tài liệu dài.</p>
-              </div>
-            </div> -->
           </div>
         </section>
       </div>
@@ -760,7 +1412,7 @@
           
           <div class="projects-grid">
             <!-- Dự án 1 -->
-            <div class="project-card" 
+            <div class="project-card" id="project1"
                  data-video="https://drive.google.com/file/d/1O9Buq84loC_qojwMbOgmmF6Fnqslsz3A/preview" 
                  data-title="Giới thiệu về trường cao đẳng Lý Thái Tổ"              
                  data-desc="Vai trò: Chỉnh Sửa Video." 
@@ -777,7 +1429,7 @@
             </div>
             
             <!-- Dự án 2 -->
-            <div class="project-card" 
+            <div class="project-card" id="project2"
                  data-video="https://drive.google.com/file/d/1wWSjxaAnwDN0gzakSTIC-ANMez42cjYW/preview" 
                  data-title="Giới thiệu bộ trò chơi Splendor." 
                  data-desc="Vai trò: Chỉnh Sửa Video." 
@@ -794,7 +1446,7 @@
             </div>
             
             <!-- Dự án 3 -->
-            <div class="project-card" 
+            <div class="project-card" id="project3"
                  data-video="https://drive.google.com/file/d/1Hq0pEHhokaI9dFQL9KcGVmmj-Y61O_WV/preview" 
                  data-title="VPbank" 
                  data-desc="Vai trò: Chỉnh Sửa Video." 
@@ -809,31 +1461,14 @@
                 <a href="#" class="project-link">Xem dự án <i class="fas fa-arrow-right"></i></a>
               </div>
             </div>
-            
-            <!-- Dự án 4 -->
-            <!-- <div class="project-card" 
-                 data-video="https://www.youtube.com/embed/6Jfk8ic3dRs" 
-                 data-title="London Music Festival" 
-                 data-desc="Quay và sản xuất highlight video cho lễ hội âm nhạc lớn tại London. Video được chỉnh sửa trên Adobe Premiere Pro với hiệu ứng âm thanh chuyên nghiệp." 
-                 data-date="Tháng 7, 2022" 
-                 data-client="London Events">
-              <img src="https://images.unsplash.com/photo-1527689638836-411945a2b57a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-                   alt="Music Festival" 
-                   class="project-img">
-              <div class="project-content">
-                <h3 class="project-title">London Music Festival</h3>
-                <p class="project-desc">Quay và sản xuất highlight video cho lễ hội âm nhạc lớn tại London.</p>
-                <a href="#" class="project-link">Xem dự án <i class="fas fa-arrow-right"></i></a>
-              </div>
-            </div> -->
           </div>
-        </section class="section">
+        </section>
 
         <section class="section">
           <h1>Video Doanh Nghiệp và Sự Kiện</h1>
           <div class="projects-grid">
             <!-- Dự án 1 -->
-            <div class="project-card" 
+            <div class="project-card" id="project4"
                  data-video="https://drive.google.com/file/d/1Qjcn6slI_5SB9UMZVo02-icC79r9Gttq/preview" 
                  data-title="Sự kiện nhạc kịch trường ISPH."              
                  data-desc="Vai trò: Chỉnh Sửa Video." 
@@ -850,7 +1485,7 @@
             </div>
             
             <!-- Dự án 2 -->
-            <div class="project-card" 
+            <div class="project-card" id="project5"
                  data-video="https://drive.google.com/file/d/1h2kaK7TKpFbTXvUMsUtEBS2MKVnH8-2k/preview" 
                  data-title="Giới thiệu nội thât bất động sản." 
                  data-desc="Vai trò: Chỉnh Sửa Video." 
@@ -867,7 +1502,7 @@
             </div>
             
             <!-- Dự án 3 -->
-            <div class="project-card" 
+            <div class="project-card" id="project6"
                  data-video="https://drive.google.com/file/d/12jtOWaR60HIWssZOJoduA3Tmrjl46-Wt/preview" 
                  data-title="Sự kiện ra măt boadgame." 
                  data-desc="Vai trò: Chỉnh Sửa Video." 
@@ -882,25 +1517,30 @@
                 <a href="#" class="project-link">Xem dự án <i class="fas fa-arrow-right"></i></a>
               </div>
             </div>
-            
-            <!-- Dự án 4 -->
-            <!-- <div class="project-card" 
-                 data-video="https://www.youtube.com/embed/6Jfk8ic3dRs" 
-                 data-title="London Music Festival" 
-                 data-desc="Quay và sản xuất highlight video cho lễ hội âm nhạc lớn tại London. Video được chỉnh sửa trên Adobe Premiere Pro với hiệu ứng âm thanh chuyên nghiệp." 
-                 data-date="Tháng 7, 2022" 
-                 data-client="London Events">
-              <img src="https://images.unsplash.com/photo-1527689638836-411945a2b57a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-                   alt="Music Festival" 
+          </div>
+        </section>
+
+        <section class="section">
+          <h1>Video thời trang</h1>
+          <div class="projects-grid">
+            <!-- Dự án 1 -->
+            <div class="project-card" id="project7"
+                 data-video="https://drive.google.com/file/d/1B7Q3apgODMvbMpGrMAqAMWzAnx5lm7le/preview" 
+                 data-title="Sự kiện nhạc kịch trường ISPH."              
+                 data-desc="Vai trò: Chỉnh Sửa Video." 
+                 data-date="Tháng 4, 2025" 
+                 data-client="Phạm Tuấn Huy">
+              <img src="https://live.staticflickr.com/65535/54564474847_314594669d_m.jpg" 
+                   alt="nhạc kịch" 
                    class="project-img">
               <div class="project-content">
-                <h3 class="project-title">London Music Festival</h3>
-                <p class="project-desc">Quay và sản xuất highlight video cho lễ hội âm nhạc lớn tại London.</p>
+                <h3 class="project-title">Lookbook</h3>
+                <p class="project-desc">Quay Mẫu.</p>
                 <a href="#" class="project-link">Xem dự án <i class="fas fa-arrow-right"></i></a>
               </div>
-            </div> -->
+            </div>
           </div>
-        </section class="section">
+        </section>
       </div>
 
       <!-- Contact Section - PHẦN LIÊN HỆ -->
@@ -910,61 +1550,22 @@
           <p>Bạn có dự án truyền thông sáng tạo cần thảo luận? Hãy liên hệ với tôi qua các phương thức dưới đây:</p>
           
           <ul class="contact-info">
-            <li>
+            <li id="contact1">
               <strong><i class="fas fa-phone"></i> Điện thoại:</strong>
               0347807422
             </li>
-            <li>
+            <li id="contact2">
               <strong><i class="fas fa-envelope"></i> Email:</strong>
               leducloi390@gmail.com
             </li>
-            <li>
+            <li id="contact3">
               <strong><i class="fas fa-map-marker-alt"></i> Địa điểm:</strong>
               Thượng Thanh - Long Biên - Hà Nội
             </li>
-            <!-- <li>
-              <strong><i class="fas fa-video"></i> Portfolio Video:</strong>
-              vimeo.com/ryanadlard
-            </li> -->
           </ul>
         </section>
 
         <div class="divider"></div>
-
-        <section class="section">
-          <h2>Gửi Yêu Cầu Dự Án</h2>
-          <form id="contactForm" style="max-width: 600px; margin-top: 20px;">
-            <div style="margin-bottom: 20px;">
-              <label for="name" style="display: block; margin-bottom: 8px; font-weight: 500;">Họ và tên</label>
-              <input type="text" id="name" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
-            </div>
-            
-            <div style="margin-bottom: 20px;">
-              <label for="email" style="display: block; margin-bottom: 8px; font-weight: 500;">Email</label>
-              <input type="email" id="email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
-            </div>
-            
-            <div style="margin-bottom: 20px;">
-              <label for="project" style="display: block; margin-bottom: 8px; font-weight: 500;">Loại dự án</label>
-              <select id="project" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
-                <option value="">Chọn loại dự án</option>
-                <option value="video">Chỉnh Sửa video</option>
-                <!-- <option value="campaign">Chiến dịch truyền thông</option>
-                <option value="event">Sự kiện trực tiếp</option>
-                <option value="other">Khác</option> -->
-              </select>
-            </div>
-            
-            <div style="margin-bottom: 20px;">
-              <label for="message" style="display: block; margin-bottom: 8px; font-weight: 500;">Thông tin dự án</label>
-              <textarea id="message" rows="5" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;"></textarea>
-            </div>
-            
-            <button type="submit" style="background: #3498db; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 500; cursor: pointer; transition: background 0.3s;">
-              Gửi yêu cầu
-            </button>
-          </form>
-        </section>
       </div>
 
       <!-- Footer - CHÂN TRANG -->
@@ -996,8 +1597,40 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // === CHỨC NĂNG DARK MODE ===
+      const toggleSwitch = document.querySelector('#checkbox');
+      const currentTheme = localStorage.getItem('theme');
+      
+      // Thiết lập chế độ ban đầu
+      if (currentTheme) {
+        document.documentElement.classList.toggle('dark-mode', currentTheme === 'dark');
+        toggleSwitch.checked = currentTheme === 'dark';
+      } else {
+        // Kiểm tra sở thích hệ thống
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        if (prefersDarkScheme.matches) {
+          document.documentElement.classList.add('dark-mode');
+          toggleSwitch.checked = true;
+          localStorage.setItem('theme', 'dark');
+        } else {
+          localStorage.setItem('theme', 'light');
+        }
+      }
+      
+      // Xử lý sự kiện chuyển đổi chế độ
+      function switchTheme(e) {
+        if (e.target.checked) {
+          document.documentElement.classList.add('dark-mode');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark-mode');
+          localStorage.setItem('theme', 'light');
+        }    
+      }
+      
+      toggleSwitch.addEventListener('change', switchTheme);
+      
       // === CHỨC NĂNG THAY ĐỔI ẢNH ĐẠI DIỆN ===
-      // Cho phép người dùng click vào ảnh đại diện để thay đổi ảnh
       const profileImage = document.getElementById('profileImage');
       const images = [
         'https://live.staticflickr.com/65535/54556537413_9cbed232cd_m.jpg',
@@ -1013,7 +1646,6 @@
       });
       
       // === CHỨC NĂNG MENU ĐIỀU HƯỚNG ===
-      // Xử lý chuyển đổi giữa các tab thông tin
       const navLinks = document.querySelectorAll('.nav-link');
       const contentSections = document.querySelectorAll('.content-section');
       
@@ -1041,29 +1673,7 @@
         });
       });
       
-      // === XỬ LÝ FORM LIÊN HỆ ===
-      // Xử lý gửi form liên hệ
-      const contactForm = document.getElementById('contactForm');
-      contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Lấy giá trị từ form
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const project = document.getElementById('project').value;
-        const message = document.getElementById('message').value;
-        
-        // Kiểm tra dữ liệu
-        if(name && email && project && message) {
-          alert(`Cảm ơn bạn ${name}! Yêu cầu dự án của bạn đã được gửi thành công. Tôi sẽ liên hệ lại sớm.`);
-          contactForm.reset();
-        } else {
-          alert('Vui lòng điền đầy đủ thông tin yêu cầu dự án.');
-        }
-      });
-      
       // === CHỨC NĂNG HIỂN THỊ VIDEO DỰ ÁN ===
-      // Xử lý modal hiển thị video dự án
       const videoModal = document.getElementById('videoModal');
       const projectCards = document.querySelectorAll('.project-card');
       const modalTitle = document.getElementById('modalTitle');
@@ -1111,6 +1721,64 @@
           projectVideo.src = '';
         }
       });
+      
+      // === HIỆU ỨNG SCROLL ===
+      function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+          rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.75 &&
+          rect.bottom >= 0
+        );
+      }
+      
+      function handleScroll() {
+        // Các phần tử trong phần giới thiệu
+        const introCards = document.querySelectorAll('.intro-card');
+        introCards.forEach(card => {
+          if (isElementInViewport(card)) {
+            card.classList.add('visible');
+          }
+        });
+        
+        // Các phần tử trong kỹ năng
+        const toolCards = document.querySelectorAll('.tool-card');
+        toolCards.forEach(card => {
+          if (isElementInViewport(card)) {
+            card.classList.add('visible');
+          }
+        });
+        
+        // Các phần tử trong kinh nghiệm
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        timelineItems.forEach(item => {
+          if (isElementInViewport(item)) {
+            item.classList.add('visible');
+          }
+        });
+        
+        // Các phần tử trong dự án
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach(card => {
+          if (isElementInViewport(card)) {
+            card.classList.add('visible');
+          }
+        });
+        
+        // Các phần tử trong liên hệ
+        const contactItems = document.querySelectorAll('.contact-info li');
+        contactItems.forEach(item => {
+          if (isElementInViewport(item)) {
+            item.classList.add('visible');
+          }
+        });
+      }
+      
+      // Kích hoạt hiệu ứng khi trang tải và khi scroll
+      window.addEventListener('load', handleScroll);
+      window.addEventListener('scroll', handleScroll);
+      
+      // Kích hoạt ngay lập tức cho các phần tử đang trong viewport
+      setTimeout(handleScroll, 100);
     });
   </script>
 </body>
