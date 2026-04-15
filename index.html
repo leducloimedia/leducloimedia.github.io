@@ -801,7 +801,7 @@
   <div class="container">
     <div class="about-wrapper">
       <div class="about-img">
-        <img id="aboutAvatar" src="" alt="Lê Đức Lợi - Video Editor">
+        <img id="aboutAvatar" src="" alt="Lê Đức Lợi - Video Editor" style="width:280px; height:280px; border-radius:50%; object-fit:cover; border:4px solid var(--accent); box-shadow:0 0 50px rgba(168,85,247,0.4);">
       </div>
       <div class="about-text">
         <div class="section-subhead">About Me</div>
@@ -894,6 +894,7 @@
 
     /**
      * Chuyển link Google Drive thành link thumbnail (ảnh từ video hoặc ảnh)
+     * - Dùng endpoint thumbnail của Google Drive
      */
     function getGoogleDriveThumbnailUrl(url, size = 800) {
       const fileId = getGoogleDriveFileId(url);
@@ -905,23 +906,34 @@
 
     /**
      * Lấy URL ảnh đại diện cho dự án
-     * Ưu tiên: thumb có sẵn -> thumbnail từ video -> placeholder
+     * Ưu tiên:
+     * 1. Nếu có thumb (và thumb không rỗng) -> dùng thumb (xử lý link Google Drive nếu cần)
+     * 2. Nếu không có thumb nhưng có video Google Drive -> lấy thumbnail từ video
+     * 3. Không có gì -> null (sẽ dùng placeholder sau)
      */
     function getProjectThumbnailUrl(project) {
+      // Trường hợp 1: có thumb riêng
       if (project.thumb && project.thumb.trim() !== "") {
+        // Nếu thumb là link Google Drive thì chuyển thành thumbnail
         if (project.thumb.includes('drive.google.com')) {
           const thumbUrl = getGoogleDriveThumbnailUrl(project.thumb);
           if (thumbUrl) return thumbUrl;
         }
+        // Không phải Google Drive thì giữ nguyên
         return project.thumb;
       }
+      
+      // Trường hợp 2: không có thumb, thử lấy từ video Google Drive
       if (project.video && project.video.includes('drive.google.com')) {
         const videoThumb = getGoogleDriveThumbnailUrl(project.video);
         if (videoThumb) return videoThumb;
       }
+      
+      // Trường hợp 3: không có gì
       return null;
     }
 
+    // Hàm chuyển link video Google Drive sang embed (dùng trong modal)
     function getGoogleDriveEmbedUrl(url) {
       const fileId = getGoogleDriveFileId(url);
       if (fileId) {
@@ -930,63 +942,64 @@
       return null;
     }
 
-    // Dữ liệu dự án
+    // Dữ liệu các dự án (giữ nguyên, không cần sửa thumb)
     const projects = [
       {
-        title: "TikTok Viral Campaign",
-        desc: "",
-        result: "",
+        title: "!",
+        desc: "...",
+        result: "Edit video",
         detail: "",
-        thumb: "https://images.pexels.com/photos/6613492/pexels-photo-6613492.jpeg?auto=compress&cs=tinysrgb&w=600",
+        thumb: "",
         tag: "TikTok",
         video: "https://drive.google.com/file/d/1vKjnO8xsjjbrJ59DmekAkFVTG6enRH76/view?usp=sharing",
         category: "featured"
       },
       {
-        title: "YouTube Vlog Series",
-        desc: "Edit 8 tập vlog du lịch cho kênh TravelWithMe.",
-        result: "1.5M views · 52% retention",
-        detail: "Tỉ lệ giữ chân trung bình 52%, tăng 180% thời gian xem.",
-        thumb: "https://images.pexels.com/photos/4491491/pexels-photo-4491491.jpeg?auto=compress&cs=tinysrgb&w=600",
+        title: "!",
+        desc: "....",
+        result: "Edit video",
+        // detail: "Tỉ lệ giữ chân trung bình 52%, tăng 180% thời gian xem.",
+        thumb: "",
         tag: "YouTube",
-        video: "",
+        video: "https://drive.google.com/file/d/1B3yNBOJLr9RHV4HcoYGR0O6bktLTZr7S/view?usp=sharing",
         category: "featured"
       },
       {
-        title: "Brand Ad – Sneaker Launch",
-        desc: "TVC 30s quảng bá dòng giày thể thao X-Sport.",
-        result: "650K views · CTR 9.1%",
-        detail: "CTR đạt 9.1%, doanh thu tăng 42%.",
-        thumb: "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=600",
+        title: "LIC",
+        desc: "TVC giới thiệu về trường Cao Đẳng Lý Thái Tổ.",
+        result: "Edit video",
+        // detail: "CTR đạt 9.1%, doanh thu tăng 42%.",
+        thumb: "",
         tag: "Ads",
-        video: "https://drive.google.com/file/d/1K2L3M4N5O6P7Q8R9S0T/view?usp=sharing",
+        video: "https://drive.google.com/file/d/1xOrFRm8dZHn5xLiBh6BHEGS3tld0YsiJ/view?usp=sharing",
         category: "business"
       },
       {
-        title: "Instagram Reels Package",
-        desc: "Chuỗi 10 Reels cho thương hiệu thời trang.",
-        result: "3.2M plays · +670% profile visits",
-        detail: "Lượt truy cập trang tăng 670%, thu hút 15K followers mới.",
-        thumb: "https://images.pexels.com/photos/3256825/pexels-photo-3256825.jpeg?auto=compress&cs=tinysrgb&w=600",
-        tag: "Reels",
-        video: "",
+        title: "Boadgame - Splendor",
+        desc: "Giới thiệu Boadgame Cờ Đá Quý - Splendor.",
+        result: "Edit video",
+        // detail: "Lượt truy cập trang tăng 670%, thu hút 15K followers mới.",
+        thumb: "https://drive.google.com/file/d/15hUUFZ2A7QPYZAHYzzvwPhQYGA9ijA4j/view?usp=sharing",
+        tag: "Ads",
+        video: "https://drive.google.com/file/d/1wWSjxaAnwDN0gzakSTIC-ANMez42cjYW/view?usp=sharing",
         category: "business"
       },
       {
-        title: "Sự kiện ra mắt sản phẩm",
-        desc: "Video highlight sự kiện ra mắt xe hơi mới.",
-        result: "500K views · 200+ leads",
-        detail: "Thu hút hơn 200 khách hàng tiềm năng đăng ký lái thử.",
-        thumb: "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=600",
+        title: "Sự kiện ra mắt Boadgame WOLFOO",
+        desc: "Video sự kiện Boadgame của WOLFOO.",
+        result: "Edit video",
+        // detail: "Thu hút hơn 200 khách hàng tiềm năng đăng ký lái thử.",
+        thumb: "",
         tag: "Event",
-        video: "",
+        video: "https://drive.google.com/file/d/12jtOWaR60HIWssZOJoduA3Tmrjl46-Wt/view?usp=sharing",
         category: "event"
       },
       {
         title: "Nhạc kịch ISPH",
-        desc: "Edit video sự kiện.",
-        result: "500K views · 200+ leads",
-        detail: "Video highlight giữ chân 85% người xem đến cuối.",
+        desc: "Video sự kiện nhạc kịch của TRƯỜNG QUỐC TẾ PARKCITY HANOI (ISPH).",
+        result: "Edit video",
+        // detail: "Video highlight giữ chân 85% người xem đến cuối.",
+        // Không có thumb, sẽ tự động lấy thumbnail từ video
         thumb: "",
         tag: "Event",
         video: "https://drive.google.com/file/d/1Qjcn6slI_5SB9UMZVo02-icC79r9Gttq/view?usp=sharing",
@@ -996,10 +1009,16 @@
 
     const grid = document.getElementById('projectsGrid');
 
+    /**
+     * RENDER DANH SÁCH DỰ ÁN
+     * - originalIndex: giữ chỉ số thật để modal mở đúng
+     * - Ảnh được lấy từ getProjectThumbnailUrl, có fallback placeholder
+     */
     function renderProjects(projectsArray = projects) {
       grid.innerHTML = projectsArray.map((p, idx) => {
         const originalIndex = projects.findIndex(proj => proj === p);
         let imageUrl = getProjectThumbnailUrl(p);
+        // Nếu không có ảnh, dùng placeholder
         if (!imageUrl) {
           imageUrl = 'https://placehold.co/600x400/1e1e22/a855f7?text=No+Image';
         }
@@ -1035,7 +1054,7 @@
       });
     });
 
-    // Modal logic
+    // ========== MODAL XEM VIDEO / ẢNH ==========
     const modal = document.getElementById('caseStudyModal');
     const modalTitle = document.getElementById('modalTitle');
     const modalDesc = document.getElementById('modalDesc');
@@ -1052,6 +1071,7 @@
       modalDetail.textContent = project.detail;
       previewDiv.innerHTML = '';
       if (currentIframe) currentIframe = null;
+      
       const embedUrl = getGoogleDriveEmbedUrl(project.video);
       if (embedUrl) {
         const wrapper = document.createElement('div');
@@ -1064,6 +1084,7 @@
         previewDiv.appendChild(wrapper);
         currentIframe = iframe;
       } else {
+        // Không có video, hiển thị ảnh (ưu tiên thumb, nếu không có thì thumbnail từ video, cuối cùng là placeholder)
         const img = document.createElement('img');
         let imgUrl = getProjectThumbnailUrl(project);
         if (!imgUrl) imgUrl = 'https://placehold.co/800x450/1e1e22/a855f7?text=No+Media';
@@ -1102,6 +1123,7 @@
     modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
     window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
+    // ========== CÁC CHỨC NĂNG KHÁC ==========
     // Mobile menu
     const toggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
@@ -1204,10 +1226,9 @@
       });
     }
 
-    // Xử lý ảnh đại diện trong phần About (lấy từ Google Drive)
     const aboutImg = document.getElementById('aboutAvatar');
     if (aboutImg) {
-      const driveLink = "https://drive.google.com/file/d/1bOYi4as4TJYcTNLvRFpk6NRfr5N_NJaj/view?usp=sharing";
+      const driveLink = "https://drive.google.com/file/d/1bOYi4as4TJYcTNLvRFpk6NRfr5N_NJaj/view?usp=drive_link";
       const thumbnailUrl = getGoogleDriveThumbnailUrl(driveLink, 400);
       if (thumbnailUrl) {
         aboutImg.src = thumbnailUrl;
