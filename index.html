@@ -3,25 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  
-  <!-- SEO Meta -->
-  <meta name="description" content="Lê Đức Lợi - Video Editor chuyên nghiệp. Dựng phim quảng cáo, TikTok, YouTube giúp thương hiệu tăng trưởng vượt bậc.">
+  <meta name="description" content="Lê Đức Lợi - Video Editor chuyên nghiệp, quảng cáo, TikTok,...">
   <meta name="keywords" content="video editor, dựng phim, Lê Đức Lợi, TikTok, YouTube, quảng cáo">
   <meta name="author" content="Lê Đức Lợi">
-  
-  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
-  
   <title>Lê Đức Lợi · Video Editor Portfolio</title>
-  
-  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  
   <style>
-    /* ---------- RESET & VARIABLES ---------- */
+    /* ========== RESET & BIẾN MÀU ========== */
     * {
       margin: 0;
       padding: 0;
@@ -34,7 +26,7 @@
       --surface-light: #1e1e22;
       --text-primary: #ffffff;
       --text-secondary: #a1a1aa;
-      --accent: #a855f7;        /* Tím neon */
+      --accent: #a855f7;
       --accent-glow: #c084fc;
       --border-light: #2a2a30;
       --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -54,7 +46,7 @@
       padding: 0 24px;
     }
 
-    /* ---------- TYPOGRAPHY ---------- */
+    /* ========== TYPOGRAPHY ========== */
     h1, h2, h3 {
       font-weight: 700;
       line-height: 1.2;
@@ -75,7 +67,7 @@
       margin-bottom: 16px;
     }
 
-    /* ---------- BUTTONS & LINKS ---------- */
+    /* ========== BUTTONS ========== */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -113,14 +105,13 @@
       box-shadow: 0 10px 20px -5px rgba(168, 85, 247, 0.3);
     }
 
-    /* ---------- NAVBAR ---------- */
+    /* ========== NAVBAR ========== */
     .navbar {
       position: sticky;
       top: 0;
       z-index: 100;
       background: rgba(10, 10, 12, 0.8);
       backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(168, 85, 247, 0.15);
       padding: 16px 0;
     }
@@ -151,6 +142,8 @@
       position: relative;
       padding-bottom: 4px;
       transition: color 0.2s;
+      text-decoration: none;
+      color: var(--text-primary);
     }
 
     .nav-menu a:hover {
@@ -180,7 +173,7 @@
       color: white;
     }
 
-    /* ---------- HERO ---------- */
+    /* ========== HERO ========== */
     .hero {
       min-height: 90vh;
       display: flex;
@@ -220,7 +213,7 @@
       gap: 20px;
     }
 
-    /* ---------- TRUST SECTION ---------- */
+    /* ========== TRUST SECTION ========== */
     .trust-section {
       padding: 40px 0;
       border-top: 1px solid var(--border-light);
@@ -248,7 +241,7 @@
       font-weight: 500;
     }
 
-    /* ---------- FILTER TABS ---------- */
+    /* ========== FILTER TABS ========== */
     .filter-tabs {
       display: flex;
       flex-wrap: wrap;
@@ -281,7 +274,7 @@
       box-shadow: 0 0 16px var(--accent-glow);
     }
 
-    /* ---------- PROJECTS (CASE STUDY) ---------- */
+    /* ========== PROJECTS GRID ========== */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -370,7 +363,7 @@
       box-shadow: 0 0 20px var(--accent);
     }
 
-    /* ---------- SERVICES ---------- */
+    /* ========== SERVICES ========== */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -407,12 +400,7 @@
       margin-bottom: 20px;
     }
 
-    .pricing-hint {
-      font-weight: 700;
-      color: var(--accent-glow);
-    }
-
-    /* ---------- ABOUT ---------- */
+    /* ========== ABOUT ========== */
     .about-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -453,75 +441,147 @@
       border: 1px solid var(--border-light);
     }
 
-    /* ---------- CTA SECTION ---------- */
-    .cta-section {
-      background: linear-gradient(145deg, #1a1125, #0f0f15);
-      border-radius: 48px;
-      padding: 80px 40px;
+    /* ========== CONTACT ========== */
+    .contact-section {
+      padding: 80px 0;
+    }
+
+    .contact-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--surface);
+      border-radius: 2rem;
+      padding: 3rem 2rem;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 20px 35px -10px rgba(0,0,0,0.3);
+    }
+
+    .contact-header {
       text-align: center;
-      border: 1px solid var(--accent);
-      box-shadow: 0 0 60px rgba(168, 85, 247, 0.15);
+      margin-bottom: 3rem;
     }
 
-    .cta-section h2 {
-      font-size: 3.5rem;
-      margin-bottom: 20px;
+    .contact-header .section-subhead {
+      color: var(--accent);
     }
 
-    .cta-btn {
-      margin-top: 30px;
+    .contact-header h1 {
+      font-size: 3rem;
+      margin-top: 0.5rem;
     }
 
-    /* ---------- CONTACT ---------- */
     .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+    }
+
+    .contact-info {
+      flex: 1;
+      min-width: 240px;
     }
 
     .contact-info h3 {
-      font-size: 2rem;
-      margin-bottom: 20px;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
     }
 
-    .social-links {
+    .info-detail p {
       display: flex;
-      gap: 28px;
-      margin: 32px 0;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
     }
 
-    .social-links a {
-      font-size: 2rem;
+    .info-detail i {
+      width: 1.6rem;
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .social-icons a {
       color: var(--text-secondary);
+      font-size: 1.6rem;
       transition: var(--transition);
     }
 
-    .social-links a:hover {
+    .social-icons a:hover {
       color: var(--accent);
       transform: translateY(-3px);
+    }
+
+    .contact-form {
+      flex: 1;
+      min-width: 280px;
+      background: var(--surface-light);
+      padding: 1.8rem;
+      border-radius: 1.5rem;
+      border: 1px solid var(--border-light);
+    }
+
+    .contact-form .form-group {
+      margin-bottom: 1.2rem;
     }
 
     .contact-form input,
     .contact-form textarea {
       width: 100%;
-      background: var(--surface-light);
-      border: 1px solid var(--border-light);
-      border-radius: 24px;
-      padding: 16px 20px;
-      color: white;
+      padding: 0.9rem 1.2rem;
+      font-size: 1rem;
       font-family: inherit;
-      margin-bottom: 20px;
+      background: var(--bg);
+      border: 1px solid var(--border-light);
+      border-radius: 1rem;
+      color: var(--text-primary);
       transition: var(--transition);
     }
 
     .contact-form input:focus,
     .contact-form textarea:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
       outline: none;
+      box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2);
     }
 
-    /* ---------- MODAL (CASE STUDY) ---------- */
+    .contact-form button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.9rem 1.8rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 2rem;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+    }
+
+    .contact-form button:hover {
+      background: #9333ea;
+    }
+
+    .form-footnote {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    hr.contact-divider {
+      margin: 2.5rem 0 0;
+      border: none;
+      border-top: 1px solid var(--border-light);
+    }
+
+    /* ========== MODAL ========== */
     .modal {
       display: none;
       position: fixed;
@@ -571,11 +631,10 @@
       justify-content: center;
     }
 
-    /* Video wrapper responsive */
     .video-wrapper {
       position: relative;
       width: 100%;
-      padding-top: 56.25%; /* 16:9 */
+      padding-top: 56.25%;
       border-radius: 20px;
       overflow: hidden;
       background: #000;
@@ -591,14 +650,7 @@
       border: none;
     }
 
-    #modalPreview img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 20px;
-    }
-
-    /* ---------- SCROLL REVEAL ---------- */
+    /* ========== SCROLL REVEAL ========== */
     .reveal {
       opacity: 0;
       transform: translateY(40px);
@@ -610,7 +662,7 @@
       transform: translateY(0);
     }
 
-    /* ---------- FOOTER ---------- */
+    /* ========== FOOTER ========== */
     footer {
       padding: 40px 0;
       text-align: center;
@@ -618,7 +670,7 @@
       border-top: 1px solid var(--border-light);
     }
 
-    /* ---------- RESPONSIVE ---------- */
+    /* ========== RESPONSIVE ========== */
     @media (max-width: 768px) {
       .nav-menu {
         position: fixed;
@@ -647,10 +699,10 @@
         align-items: flex-start;
       }
       .contact-grid {
-        grid-template-columns: 1fr;
+        flex-direction: column;
       }
-      .cta-section h2 {
-        font-size: 2.5rem;
+      .contact-container {
+        padding: 2rem 1.5rem;
       }
       .filter-tabs {
         justify-content: flex-start;
@@ -660,22 +712,21 @@
 </head>
 <body>
 
-<!-- Sticky Navbar -->
+<!-- ==================== NAVBAR ==================== -->
 <nav class="navbar">
   <div class="container nav-container">
-    <div class="logo">DucLoi.</div>
+    <div class="logo">LoiLe.</div>
     <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
     <div class="nav-menu" id="navMenu">
-      <a href="#home">Home</a>
-      <a href="#projects">Projects</a>
-      <a href="#services">Services</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="#home">Trang chủ</a>
+      <a href="#projects">Dự án</a>
+      <a href="#about">Giới thiệu</a>
+      <a href="#contact">Liên hệ</a>
     </div>
   </div>
 </nav>
 
-<!-- Hero Section -->
+<!-- ==================== HERO ==================== -->
 <section id="home" class="hero">
   <div class="container hero-content reveal">
     <h1>
@@ -683,25 +734,25 @@
       with high-impact video content
     </h1>
     <div class="hero-sub">
-      Lê Đức Lợi – Video Editor với 4+ năm kinh nghiệm. Chuyên TikTok, YouTube & Ads.
+      Lê Đức Lợi – Video Editor với hơn năm kinh nghiệm. Chuyên TikTok, YouTube & Ads.
     </div>
     <div class="hero-cta">
-      <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Hire Me</a>
-      <a href="#projects" class="btn btn-outline"><i class="fas fa-play"></i> View Projects</a>
+      <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Liên hệ tôi</a>
+      <a href="#projects" class="btn btn-outline"><i class="fas fa-play"></i> Xem dự án</a>
     </div>
   </div>
 </section>
 
-<!-- Trust Section (Stats) -->
+<!-- ==================== TRUST SECTION ==================== -->
 <section class="trust-section reveal">
   <div class="container">
     <div class="stats-grid">
       <div class="stat-item">
-        <h3><span class="stat-number" data-target="12">0</span>M+</h3>
+        <h3><span class="stat-number" data-target="1">0</span>M+</h3>
         <p>Views Generated</p>
       </div>
       <div class="stat-item">
-        <h3><span class="stat-number" data-target="60">0</span>+</h3>
+        <h3><span class="stat-number" data-target="500">0</span>+</h3>
         <p>Videos Edited</p>
       </div>
       <div class="stat-item">
@@ -712,123 +763,99 @@
   </div>
 </section>
 
-<!-- Projects Section -->
+<!-- ==================== PROJECTS SECTION ==================== -->
 <section id="projects" class="reveal">
   <div class="container">
-    <div class="section-subhead">Case Studies</div>
-    <h2>Projects that drive results</h2>
-    
-    <!-- Filter Tabs -->
+    <h2>Projects</h2>
     <div class="filter-tabs">
-      <button class="filter-btn active" data-filter="all">Tất cả</button>
-      <button class="filter-btn" data-filter="featured">Dự án nổi bật</button>
+      <button class="filter-btn active" data-filter="featured">Dự án nổi bật</button>
       <button class="filter-btn" data-filter="business">Doanh nghiệp</button>
       <button class="filter-btn" data-filter="event">Sự kiện</button>
+      <button class="filter-btn" data-filter="all">Tất cả</button>
     </div>
-    
     <div class="projects-grid" id="projectsGrid"></div>
   </div>
 </section>
 
-<!-- Services Section -->
+<!-- ==================== SERVICES ==================== -->
 <section id="services" class="reveal">
   <div class="container">
-    <div class="section-subhead">What I Do</div>
-    <h2>Services & Expertise</h2>
+    <h2>Expertise</h2>
     <div class="services-grid">
       <div class="service-card">
         <div class="service-icon"><i class="fas fa-video"></i></div>
         <h3>Video Editing</h3>
         <p>Dựng phim quảng cáo, TVC, sự kiện – chuyên nghiệp, sáng tạo.</p>
-        <span class="pricing-hint">Từ 2 triệu / dự án</span>
       </div>
       <div class="service-card">
         <div class="service-icon"><i class="fab fa-tiktok"></i></div>
         <h3>Short-form</h3>
         <p>TikTok, Reels, YouTube Shorts – tối ưu viral, giữ chân người xem.</p>
-        <span class="pricing-hint">Gói 5 video / tháng</span>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fab fa-youtube"></i></div>
-        <h3>YouTube Growth</h3>
-        <p>Edit video dài, tối ưu retention, thumbnail, SEO.</p>
-        <span class="pricing-hint">Từ 1.5 triệu / video</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- About Section -->
+<!-- ==================== ABOUT ==================== -->
 <section id="about" class="reveal">
   <div class="container">
     <div class="about-wrapper">
       <div class="about-img">
-        <img src="https://i.pravatar.cc/400?img=33" alt="Lê Đức Lợi - Video Editor">
+        <img id="aboutAvatar" src="" alt="Lê Đức Lợi - Video Editor">
       </div>
       <div class="about-text">
         <div class="section-subhead">About Me</div>
         <h2 style="margin-bottom: 20px;">Lê Đức Lợi</h2>
         <p style="color: var(--text-secondary); margin-bottom: 24px;">
-          Xin chào! Tôi là Lợi, một Video Editor tự do với hơn 4 năm kinh nghiệm. Tôi đã hợp tác với nhiều thương hiệu và nhà sáng tạo nội dung để tạo ra những video thu hút hàng triệu lượt xem.
-        </p>
-        <p style="color: var(--text-secondary); margin-bottom: 24px;">
-          Sứ mệnh của tôi là biến ý tưởng của bạn thành những thước phim ấn tượng, giúp thương hiệu kể câu chuyện một cách chân thực và cảm xúc.
+          Xin chào! Tôi là Lợi, một Video Editor tự do với hơn 1 năm kinh nghiệm, tạo ra những video thu hút hàng triệu lượt xem.
         </p>
         <div class="skill-list">
           <span class="skill-tag">Premiere Pro</span>
           <span class="skill-tag">After Effects</span>
           <span class="skill-tag">DaVinci Resolve</span>
+          <span class="skill-tag">CapCut</span>
           <span class="skill-tag">Color Grading</span>
-          <span class="skill-tag">Sound Design</span>
           <span class="skill-tag">Motion Graphics</span>
         </div>
-        <p><i class="fas fa-check-circle" style="color: var(--accent); margin-right: 8px;"></i> <strong>Why me?</strong> Tôi cam kết chất lượng, đúng deadline và luôn sáng tạo trong từng khung hình.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA Section -->
-<section class="reveal">
-  <div class="container cta-section">
-    <h2>Let’s work together</h2>
-    <p style="font-size: 1.3rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
-      Bạn đã sẵn sàng tạo ra những video đột phá? Hãy liên hệ ngay để bắt đầu dự án của bạn.
-    </p>
-    <div class="cta-btn">
-      <a href="#contact" class="btn btn-primary" style="font-size: 1.2rem; padding: 18px 48px;"><i class="fas fa-calendar-check"></i> Book a Call</a>
+<!-- ==================== CONTACT ==================== -->
+<section id="contact" class="contact-section reveal">
+  <div class="container contact-container">
+    <div class="contact-header">
+      <div class="section-subhead">GET IN TOUCH</div>
+      <h1>Contact</h1>
     </div>
-  </div>
-</section>
-
-<!-- Contact Section -->
-<section id="contact" class="reveal">
-  <div class="container">
-    <div class="section-subhead">Get In Touch</div>
-    <h2>Contact</h2>
     <div class="contact-grid">
       <div class="contact-info">
         <h3>Hãy kết nối</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 16px;">Email: leducloi.work@gmail.com</p>
-        <p style="color: var(--text-secondary);">Số điện thoại: 0987 654 321</p>
-        <p style="color: var(--text-secondary); margin-top: 8px;">Ho Chi Minh City, Vietnam</p>
-        <div class="social-links">
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-          <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <div class="info-detail">
+          <p><i class="fas fa-envelope"></i> Email: leducloi.editor@gmail.com</p>
+          <p><i class="fas fa-phone-alt"></i> Số điện thoại: 0347 807 422</p>
+          <p><i class="fas fa-map-marker-alt"></i> Ha Noi City, Vietnam</p>
+        </div>
+        <div class="social-icons">
+          <a href="https://facebook.com/le.loi.070802" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
         </div>
       </div>
-      <div class="contact-form">
-        <form id="contactForm">
-          <input type="text" placeholder="Tên của bạn" required>
-          <input type="email" placeholder="Email" required>
-          <textarea rows="4" placeholder="Mô tả dự án bạn cần..."></textarea>
-          <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fas fa-paper-plane"></i> Gửi tin nhắn</button>
-        </form>
-        <p style="font-size:0.8rem; color: #666; margin-top: 12px;">* Tôi sẽ phản hồi trong vòng 24h</p>
-      </div>
+      <form id="contactForm" class="contact-form" method="POST">
+        <div class="form-group">
+          <input type="text" name="name" placeholder="Tên của bạn" required>
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+          <textarea name="message" rows="5" placeholder="Mô tả dự án bạn cần..." required></textarea>
+        </div>
+        <button type="submit">Gửi tin nhắn</button>
+        <div class="form-footnote">* Tôi sẽ phản hồi trong vòng 24h</div>
+      </form>
     </div>
+    <hr class="contact-divider">
   </div>
 </section>
 
@@ -838,7 +865,7 @@
   </div>
 </footer>
 
-<!-- Modal Case Study -->
+<!-- ==================== MODAL ==================== -->
 <div class="modal" id="caseStudyModal">
   <div class="modal-content">
     <span class="modal-close" id="closeModalBtn">&times;</span>
@@ -856,33 +883,70 @@
   (function(){
     "use strict";
 
-    /* ===== HELPER GOOGLE DRIVE ===== */
-    function getGoogleDriveEmbedUrl(url) {
+    /**
+     * Lấy ID của file Google Drive từ link
+     */
+    function getGoogleDriveFileId(url) {
       if (!url) return null;
       const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/) || url.match(/id=([a-zA-Z0-9_-]+)/);
-      if (match && match[1]) {
-        return `https://drive.google.com/file/d/${match[1]}/preview`;
+      return match ? match[1] : null;
+    }
+
+    /**
+     * Chuyển link Google Drive thành link thumbnail (ảnh từ video hoặc ảnh)
+     */
+    function getGoogleDriveThumbnailUrl(url, size = 800) {
+      const fileId = getGoogleDriveFileId(url);
+      if (fileId) {
+        return `https://drive.google.com/thumbnail?id=${fileId}&sz=w${size}`;
       }
       return null;
     }
 
-    // ---------- DỮ LIỆU DỰ ÁN (đã thêm category) ----------
+    /**
+     * Lấy URL ảnh đại diện cho dự án
+     * Ưu tiên: thumb có sẵn -> thumbnail từ video -> placeholder
+     */
+    function getProjectThumbnailUrl(project) {
+      if (project.thumb && project.thumb.trim() !== "") {
+        if (project.thumb.includes('drive.google.com')) {
+          const thumbUrl = getGoogleDriveThumbnailUrl(project.thumb);
+          if (thumbUrl) return thumbUrl;
+        }
+        return project.thumb;
+      }
+      if (project.video && project.video.includes('drive.google.com')) {
+        const videoThumb = getGoogleDriveThumbnailUrl(project.video);
+        if (videoThumb) return videoThumb;
+      }
+      return null;
+    }
+
+    function getGoogleDriveEmbedUrl(url) {
+      const fileId = getGoogleDriveFileId(url);
+      if (fileId) {
+        return `https://drive.google.com/file/d/${fileId}/preview`;
+      }
+      return null;
+    }
+
+    // Dữ liệu dự án
     const projects = [
       {
         title: "TikTok Viral Campaign",
-        desc: "Chiến dịch ra mắt sản phẩm mỹ phẩm cho thương hiệu ABC.",
-        result: "2.8M views · +410% engagement",
-        detail: "Video đạt 2.8 triệu view sau 5 ngày, tăng 410% tương tác so với video trước đó.",
+        desc: "",
+        result: "",
+        detail: "",
         thumb: "https://images.pexels.com/photos/6613492/pexels-photo-6613492.jpeg?auto=compress&cs=tinysrgb&w=600",
         tag: "TikTok",
-        video: "https://drive.google.com/file/d/1A2B3C4D5E6F7G8H9I0J/view?usp=sharing",
+        video: "https://drive.google.com/file/d/1vKjnO8xsjjbrJ59DmekAkFVTG6enRH76/view?usp=sharing",
         category: "featured"
       },
       {
         title: "YouTube Vlog Series",
         desc: "Edit 8 tập vlog du lịch cho kênh TravelWithMe.",
         result: "1.5M views · 52% retention",
-        detail: "Tỉ lệ giữ chân trung bình 52%, tăng 180% thời gian xem so với series trước.",
+        detail: "Tỉ lệ giữ chân trung bình 52%, tăng 180% thời gian xem.",
         thumb: "https://images.pexels.com/photos/4491491/pexels-photo-4491491.jpeg?auto=compress&cs=tinysrgb&w=600",
         tag: "YouTube",
         video: "",
@@ -892,7 +956,7 @@
         title: "Brand Ad – Sneaker Launch",
         desc: "TVC 30s quảng bá dòng giày thể thao X-Sport.",
         result: "650K views · CTR 9.1%",
-        detail: "Tỉ lệ nhấp chuột (CTR) đạt 9.1%, doanh thu tăng 42% trong tuần ra mắt.",
+        detail: "CTR đạt 9.1%, doanh thu tăng 42%.",
         thumb: "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=600",
         tag: "Ads",
         video: "https://drive.google.com/file/d/1K2L3M4N5O6P7Q8R9S0T/view?usp=sharing",
@@ -902,7 +966,7 @@
         title: "Instagram Reels Package",
         desc: "Chuỗi 10 Reels cho thương hiệu thời trang.",
         result: "3.2M plays · +670% profile visits",
-        detail: "Lượt truy cập trang cá nhân tăng 670%, thu hút 15K followers mới.",
+        detail: "Lượt truy cập trang tăng 670%, thu hút 15K followers mới.",
         thumb: "https://images.pexels.com/photos/3256825/pexels-photo-3256825.jpeg?auto=compress&cs=tinysrgb&w=600",
         tag: "Reels",
         video: "",
@@ -912,35 +976,37 @@
         title: "Sự kiện ra mắt sản phẩm",
         desc: "Video highlight sự kiện ra mắt xe hơi mới.",
         result: "500K views · 200+ leads",
-        detail: "Video ghi lại toàn bộ sự kiện, thu hút hơn 200 khách hàng tiềm năng đăng ký lái thử.",
+        detail: "Thu hút hơn 200 khách hàng tiềm năng đăng ký lái thử.",
         thumb: "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=600",
         tag: "Event",
         video: "",
         category: "event"
       },
       {
-        title: "Hội thảo trực tuyến",
-        desc: "Edit video hội thảo công nghệ 4K.",
-        result: "1.2M views · 85% retention",
-        detail: "Video dài 2 giờ được cắt gọn còn 15 phút highlight, giữ chân 85% người xem đến cuối.",
-        thumb: "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=600",
+        title: "Nhạc kịch ISPH",
+        desc: "Edit video sự kiện.",
+        result: "500K views · 200+ leads",
+        detail: "Video highlight giữ chân 85% người xem đến cuối.",
+        thumb: "",
         tag: "Event",
-        video: "https://drive.google.com/file/d/1X2Y3Z4A5B6C7D8E9F0G/view?usp=sharing",
+        video: "https://drive.google.com/file/d/1Qjcn6slI_5SB9UMZVo02-icC79r9Gttq/view?usp=sharing",
         category: "event"
       }
     ];
 
     const grid = document.getElementById('projectsGrid');
 
-    // Hàm render (có thể gọi với mảng đã lọc)
     function renderProjects(projectsArray = projects) {
-      grid.innerHTML = projectsArray.map((p) => {
-        const originalIndex = projects.indexOf(p); // Lấy index gốc để modal biết
+      grid.innerHTML = projectsArray.map((p, idx) => {
+        const originalIndex = projects.findIndex(proj => proj === p);
+        let imageUrl = getProjectThumbnailUrl(p);
+        if (!imageUrl) {
+          imageUrl = 'https://placehold.co/600x400/1e1e22/a855f7?text=No+Image';
+        }
+        const imgTag = `<img src="${imageUrl}" alt="${p.title}" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e1e22/a855f7?text=No+Image';">`;
         return `
           <div class="project-card" data-index="${originalIndex}">
-            <div class="card-thumb">
-              <img src="${p.thumb}" alt="${p.title}" loading="lazy">
-            </div>
+            <div class="card-thumb">${imgTag}</div>
             <div class="card-content">
               <div class="card-title">${p.title}</div>
               <div class="card-desc">${p.desc}</div>
@@ -952,28 +1018,24 @@
       }).join('');
     }
 
-    // Hàm lọc theo category
     function filterProjects(category) {
       if (category === 'all') return projects;
       return projects.filter(p => p.category === category);
     }
 
-    // Render lần đầu
-    renderProjects();
+    renderProjects(filterProjects('featured'));
 
-    // ---------- XỬ LÝ LỌC ----------
     const filterButtons = document.querySelectorAll('.filter-btn');
     filterButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         filterButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const filterValue = btn.getAttribute('data-filter');
-        const filtered = filterProjects(filterValue);
+        const filtered = filterProjects(btn.getAttribute('data-filter'));
         renderProjects(filtered);
       });
     });
 
-    // ---------- MODAL ----------
+    // Modal logic
     const modal = document.getElementById('caseStudyModal');
     const modalTitle = document.getElementById('modalTitle');
     const modalDesc = document.getElementById('modalDesc');
@@ -981,16 +1043,16 @@
     const modalDetail = document.getElementById('modalDetail');
     const previewDiv = document.getElementById('modalPreview');
     const closeBtn = document.getElementById('closeModalBtn');
+    let currentIframe = null;
 
     function openModal(project) {
       modalTitle.textContent = project.title;
       modalDesc.textContent = project.desc;
       modalResult.innerHTML = `<i class="fas fa-chart-simple"></i> ${project.result}`;
       modalDetail.textContent = project.detail;
-
       previewDiv.innerHTML = '';
-      const embedUrl = project.video ? getGoogleDriveEmbedUrl(project.video) : null;
-
+      if (currentIframe) currentIframe = null;
+      const embedUrl = getGoogleDriveEmbedUrl(project.video);
       if (embedUrl) {
         const wrapper = document.createElement('div');
         wrapper.className = 'video-wrapper';
@@ -998,22 +1060,33 @@
         iframe.src = embedUrl + '?autoplay=1';
         iframe.setAttribute('allow', 'autoplay; fullscreen');
         iframe.setAttribute('allowfullscreen', '');
-        iframe.setAttribute('loading', 'lazy');
         wrapper.appendChild(iframe);
         previewDiv.appendChild(wrapper);
+        currentIframe = iframe;
       } else {
         const img = document.createElement('img');
-        img.src = project.thumb;
+        let imgUrl = getProjectThumbnailUrl(project);
+        if (!imgUrl) imgUrl = 'https://placehold.co/800x450/1e1e22/a855f7?text=No+Media';
+        img.src = imgUrl;
         img.alt = project.title;
-        img.loading = 'lazy';
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'cover';
+        img.onerror = function() {
+          this.onerror = null;
+          this.src = 'https://placehold.co/800x450/1e1e22/a855f7?text=No+Media';
+        };
         previewDiv.appendChild(img);
       }
-
       modal.style.display = 'flex';
       document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
+      if (currentIframe) {
+        currentIframe.src = '';
+        currentIframe = null;
+      }
       modal.style.display = 'none';
       document.body.style.overflow = '';
     }
@@ -1022,33 +1095,38 @@
       const btn = e.target.closest('.view-case-btn');
       if (!btn) return;
       const card = btn.closest('.project-card');
-      const index = card?.dataset.index;
-      if (index !== undefined) openModal(projects[index]);
+      const idx = card?.dataset.index;
+      if (idx !== undefined) openModal(projects[idx]);
     });
-
     closeBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
     window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-    // ---------- MOBILE MENU ----------
+    // Mobile menu
     const toggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
-    toggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      const icon = toggle.querySelector('i');
-      icon.classList.toggle('fa-bars');
-      icon.classList.toggle('fa-times');
-    });
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
+    if (toggle && navMenu) {
+      toggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
         const icon = toggle.querySelector('i');
-        icon.classList.add('fa-bars');
-        icon.classList.remove('fa-times');
+        if (icon) {
+          icon.classList.toggle('fa-bars');
+          icon.classList.toggle('fa-times');
+        }
       });
-    });
+      document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+          const icon = toggle.querySelector('i');
+          if (icon) {
+            icon.classList.add('fa-bars');
+            icon.classList.remove('fa-times');
+          }
+        });
+      });
+    }
 
-    // ---------- SMOOTH SCROLL ----------
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
@@ -1061,25 +1139,21 @@
       });
     });
 
-    // ---------- SCROLL REVEAL ----------
+    // Scroll reveal
     const revealElements = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -20px 0px' });
+    }, { threshold: 0.15 });
     revealElements.forEach(el => observer.observe(el));
-
     setTimeout(() => {
       revealElements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.8) el.classList.add('visible');
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.8) el.classList.add('visible');
       });
     }, 100);
 
-    // ---------- STATS COUNTER ----------
+    // Stats counter
     const statNumbers = document.querySelectorAll('.stat-number');
     const statsObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1105,13 +1179,46 @@
     }, { threshold: 0.5 });
     statNumbers.forEach(el => statsObserver.observe(el));
 
-    // ---------- CONTACT FORM ----------
-    const form = document.getElementById('contactForm');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('✨ Cảm ơn bạn đã liên hệ! Tôi sẽ phản hồi trong thời gian sớm nhất.');
-      form.reset();
-    });
+    // Formspree AJAX
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const formData = new FormData(contactForm);
+        try {
+          const response = await fetch('https://formspree.io/f/mojyjenz', {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (response.ok) {
+            alert('✅ Gửi tin nhắn thành công! Cảm ơn bạn.');
+            contactForm.reset();
+          } else {
+            alert('❌ Gửi thất bại. Vui lòng thử lại.');
+          }
+        } catch (error) {
+          console.error(error);
+          alert('❌ Lỗi kết nối.');
+        }
+      });
+    }
+
+    // Xử lý ảnh đại diện trong phần About (lấy từ Google Drive)
+    const aboutImg = document.getElementById('aboutAvatar');
+    if (aboutImg) {
+      const driveLink = "https://drive.google.com/file/d/1bOYi4as4TJYcTNLvRFpk6NRfr5N_NJaj/view?usp=sharing";
+      const thumbnailUrl = getGoogleDriveThumbnailUrl(driveLink, 400);
+      if (thumbnailUrl) {
+        aboutImg.src = thumbnailUrl;
+        aboutImg.onerror = function() {
+          this.onerror = null;
+          this.src = 'https://placehold.co/400x400/1e1e22/a855f7?text=Avatar';
+        };
+      } else {
+        aboutImg.src = 'https://placehold.co/400x400/1e1e22/a855f7?text=Avatar';
+      }
+    }
 
   })();
 </script>
