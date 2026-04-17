@@ -718,27 +718,35 @@
     <div class="logo">LoiLe.</div>
     <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
     <div class="nav-menu" id="navMenu">
-      <a href="#home">Trang chủ</a>
-      <a href="#projects">Dự án</a>
       <a href="#about">Giới thiệu</a>
+      <a href="#projects">Dự án</a>
       <a href="#contact">Liên hệ</a>
     </div>
   </div>
 </nav>
 
-<!-- ==================== HERO ==================== -->
-<section id="home" class="hero">
-  <div class="container hero-content reveal">
-    <h1>
-      <span class="highlight">I help brands grow</span><br>
-      with high-impact video content
-    </h1>
-    <div class="hero-sub">
-      Lê Đức Lợi – Video Editor với hơn năm kinh nghiệm. Chuyên TikTok, YouTube & Ads.
-    </div>
-    <div class="hero-cta">
-      <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Liên hệ tôi</a>
-      <a href="#projects" class="btn btn-outline"><i class="fas fa-play"></i> Xem dự án</a>
+<!-- ==================== ABOUT ==================== -->
+<section id="about" class="reveal">
+  <div class="container">
+    <div class="about-wrapper">
+      <div class="about-img">
+        <img id="aboutAvatar" src="" alt="Lê Đức Lợi - Video Editor" style="width:280px; height:280px; border-radius:50%; object-fit:cover; border:4px solid var(--accent); box-shadow:0 0 50px rgba(168,85,247,0.4);">
+      </div>
+      <div class="about-text">
+        <div class="section-subhead">About Me</div>
+        <h2 style="margin-bottom: 20px;">Lê Đức Lợi</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 24px;">
+          Xin chào! Tôi là Lợi, một Video Editor tự do với hơn 1 năm kinh nghiệm, tạo ra những video thu hút hàng triệu lượt xem.
+        </p>
+        <div class="skill-list">
+          <span class="skill-tag">Premiere Pro</span>
+          <span class="skill-tag">After Effects</span>
+          <span class="skill-tag">DaVinci Resolve</span>
+          <span class="skill-tag">CapCut</span>
+          <span class="skill-tag">Color Grading</span>
+          <span class="skill-tag">Motion Graphics</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -768,7 +776,7 @@
   <div class="container">
     <h2>Projects</h2>
     <div class="filter-tabs">
-      <button class="filter-btn active" data-filter="featured">Dự án nổi bật</button>
+      <button class="filter-btn active" data-filter="AE">AFTER EFFECTS</button>
       <button class="filter-btn" data-filter="business">Doanh nghiệp</button>
       <button class="filter-btn" data-filter="event">Sự kiện</button>
       <button class="filter-btn" data-filter="LookBook">LookBook</button>
@@ -792,32 +800,6 @@
         <div class="service-icon"><i class="fab fa-tiktok"></i></div>
         <h3>Short-form</h3>
         <p>TikTok, Reels, YouTube Shorts – tối ưu viral, giữ chân người xem.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== ABOUT ==================== -->
-<section id="about" class="reveal">
-  <div class="container">
-    <div class="about-wrapper">
-      <div class="about-img">
-        <img id="aboutAvatar" src="" alt="Lê Đức Lợi - Video Editor" style="width:280px; height:280px; border-radius:50%; object-fit:cover; border:4px solid var(--accent); box-shadow:0 0 50px rgba(168,85,247,0.4);">
-      </div>
-      <div class="about-text">
-        <div class="section-subhead">About Me</div>
-        <h2 style="margin-bottom: 20px;">Lê Đức Lợi</h2>
-        <p style="color: var(--text-secondary); margin-bottom: 24px;">
-          Xin chào! Tôi là Lợi, một Video Editor tự do với hơn 1 năm kinh nghiệm, tạo ra những video thu hút hàng triệu lượt xem.
-        </p>
-        <div class="skill-list">
-          <span class="skill-tag">Premiere Pro</span>
-          <span class="skill-tag">After Effects</span>
-          <span class="skill-tag">DaVinci Resolve</span>
-          <span class="skill-tag">CapCut</span>
-          <span class="skill-tag">Color Grading</span>
-          <span class="skill-tag">Motion Graphics</span>
-        </div>
       </div>
     </div>
   </div>
@@ -895,7 +877,6 @@
 
     /**
      * Chuyển link Google Drive thành link thumbnail (ảnh từ video hoặc ảnh)
-     * - Dùng endpoint thumbnail của Google Drive
      */
     function getGoogleDriveThumbnailUrl(url, size = 800) {
       const fileId = getGoogleDriveFileId(url);
@@ -907,34 +888,24 @@
 
     /**
      * Lấy URL ảnh đại diện cho dự án
-     * Ưu tiên:
-     * 1. Nếu có thumb (và thumb không rỗng) -> dùng thumb (xử lý link Google Drive nếu cần)
-     * 2. Nếu không có thumb nhưng có video Google Drive -> lấy thumbnail từ video
-     * 3. Không có gì -> null (sẽ dùng placeholder sau)
      */
     function getProjectThumbnailUrl(project) {
-      // Trường hợp 1: có thumb riêng
       if (project.thumb && project.thumb.trim() !== "") {
-        // Nếu thumb là link Google Drive thì chuyển thành thumbnail
         if (project.thumb.includes('drive.google.com')) {
           const thumbUrl = getGoogleDriveThumbnailUrl(project.thumb);
           if (thumbUrl) return thumbUrl;
         }
-        // Không phải Google Drive thì giữ nguyên
         return project.thumb;
       }
       
-      // Trường hợp 2: không có thumb, thử lấy từ video Google Drive
       if (project.video && project.video.includes('drive.google.com')) {
         const videoThumb = getGoogleDriveThumbnailUrl(project.video);
         if (videoThumb) return videoThumb;
       }
       
-      // Trường hợp 3: không có gì
       return null;
     }
 
-    // Hàm chuyển link video Google Drive sang embed (dùng trong modal)
     function getGoogleDriveEmbedUrl(url) {
       const fileId = getGoogleDriveFileId(url);
       if (fileId) {
@@ -943,44 +914,30 @@
       return null;
     }
 
-    // Dữ liệu các dự án (giữ nguyên, không cần sửa thumb)
+    // Dữ liệu các dự án (đã sửa link lỗi của LookBook Caffeine Studio)
     const projects = [
-      // {
-      //   title: "!",
-      //   desc: "...",
-      //   result: "Edit video",
-      //   detail: "",
-      //   thumb: "",
-      //   tag: "TikTok",
-      //   video: "https://drive.google.com/file/d/1vKjnO8xsjjbrJ59DmekAkFVTG6enRH76/view?usp=sharing",
-      //   category: "featured"
-      // },
-      // {
-      //   title: "!",
-      //   desc: "....",
-      //   result: "Edit video",
-      //   // detail: "Tỉ lệ giữ chân trung bình 52%, tăng 180% thời gian xem.",
-      //   thumb: "",
-      //   tag: "YouTube",
-      //   video: "https://drive.google.com/file/d/1B3yNBOJLr9RHV4HcoYGR0O6bktLTZr7S/view?usp=sharing",
-      //   category: "featured"
-      // },
-      
       {
-        title: "BDS Dương Nội",
+        title: "REDBULL",
         desc: "....",
         result: "Edit video",
-        // detail: "Tỉ lệ giữ chân trung bình 52%, tăng 180% thời gian xem.",
         thumb: "",
         tag: "YouTube",
-        video: "https://drive.google.com/file/d/1h2kaK7TKpFbTXvUMsUtEBS2MKVnH8-2k/view?usp=sharing",
-        category: "featured"
+        video: "https://drive.google.com/file/d/1yLAhDtbfXLUFaR_QcViSduJ7Bu1s47V4/view?usp=sharing",
+        category: "AE"
+      },
+      {
+        title: "BDS",
+        desc: "....",
+        result: "Edit video",
+        thumb: "",
+        tag: "YouTube",
+        video: "https://drive.google.com/file/d/1IFip7fLH206_16dJIa9xVGIR1bCrk2Xs/view?usp=sharing",
+        category: "AE"
       },
       {
         title: "LIC",
         desc: "TVC giới thiệu về trường Cao Đẳng Lý Thái Tổ.",
         result: "Edit video",
-        // detail: "CTR đạt 9.1%, doanh thu tăng 42%.",
         thumb: "",
         tag: "Ads",
         video: "https://drive.google.com/file/d/1xOrFRm8dZHn5xLiBh6BHEGS3tld0YsiJ/view?usp=sharing",
@@ -990,7 +947,6 @@
         title: "Boadgame - Splendor",
         desc: "Giới thiệu Boadgame Cờ Đá Quý - Splendor.",
         result: "Edit video",
-        // detail: "Lượt truy cập trang tăng 670%, thu hút 15K followers mới.",
         thumb: "https://drive.google.com/file/d/15hUUFZ2A7QPYZAHYzzvwPhQYGA9ijA4j/view?usp=sharing",
         tag: "Ads",
         video: "https://drive.google.com/file/d/1wWSjxaAnwDN0gzakSTIC-ANMez42cjYW/view?usp=sharing",
@@ -1000,7 +956,6 @@
         title: "Sự kiện ra mắt Boadgame WOLFOO",
         desc: "Video sự kiện Boadgame của WOLFOO.",
         result: "Edit video",
-        // detail: "Thu hút hơn 200 khách hàng tiềm năng đăng ký lái thử.",
         thumb: "",
         tag: "Event",
         video: "https://drive.google.com/file/d/12jtOWaR60HIWssZOJoduA3Tmrjl46-Wt/view?usp=sharing",
@@ -1010,8 +965,6 @@
         title: "Nhạc kịch ISPH",
         desc: "Video sự kiện nhạc kịch của TRƯỜNG QUỐC TẾ PARKCITY HANOI (ISPH).",
         result: "Edit video",
-        // detail: "Video highlight giữ chân 85% người xem đến cuối.",
-        // Không có thumb, sẽ tự động lấy thumbnail từ video
         thumb: "",
         tag: "Event",
         video: "https://drive.google.com/file/d/1Qjcn6slI_5SB9UMZVo02-icC79r9Gttq/view?usp=sharing",
@@ -1021,18 +974,15 @@
         title: "LookBook Caffeine Studio",
         desc: "",
         result: "Edit video",
-        // detail: "Thu hút hơn 200 khách hàng tiềm năng đăng ký lái thử.",
         thumb: "",
         tag: "Event",
-        video: "https://drive.google.com/file/d/1B7Q3apgODMvbMpGrMAqAMWzAnx5lm7le/vview?usp=sharing",
+        video: "https://drive.google.com/file/d/1B7Q3apgODMvbMpGrMAqAMWzAnx5lm7le/view?usp=sharing",  // ĐÃ SỬA: vview -> view
         category: "LookBook"
       },
       {
         title: "LookBook quay ngoại cảnh",
         desc: "",
         result: "Edit video",
-        // detail: "Video highlight giữ chân 85% người xem đến cuối.",
-        // Không có thumb, sẽ tự động lấy thumbnail từ video
         thumb: "",
         tag: "Event",
         video: "https://drive.google.com/file/d/1mX9-5PNvlKn5TeoF72F0kClmfQDk3_y_/view?usp=sharing",
@@ -1042,16 +992,10 @@
 
     const grid = document.getElementById('projectsGrid');
 
-    /**
-     * RENDER DANH SÁCH DỰ ÁN
-     * - originalIndex: giữ chỉ số thật để modal mở đúng
-     * - Ảnh được lấy từ getProjectThumbnailUrl, có fallback placeholder
-     */
     function renderProjects(projectsArray = projects) {
       grid.innerHTML = projectsArray.map((p, idx) => {
         const originalIndex = projects.findIndex(proj => proj === p);
         let imageUrl = getProjectThumbnailUrl(p);
-        // Nếu không có ảnh, dùng placeholder
         if (!imageUrl) {
           imageUrl = 'https://placehold.co/600x400/1e1e22/a855f7?text=No+Image';
         }
@@ -1075,7 +1019,8 @@
       return projects.filter(p => p.category === category);
     }
 
-    renderProjects(filterProjects('featured'));
+    // Hiển thị dự án theo category AE (nút active đầu tiên)
+    renderProjects(filterProjects('AE'));
 
     const filterButtons = document.querySelectorAll('.filter-btn');
     filterButtons.forEach(btn => {
@@ -1087,7 +1032,7 @@
       });
     });
 
-    // ========== MODAL XEM VIDEO / ẢNH ==========
+    // ========== MODAL XEM VIDEO ==========
     const modal = document.getElementById('caseStudyModal');
     const modalTitle = document.getElementById('modalTitle');
     const modalDesc = document.getElementById('modalDesc');
@@ -1101,7 +1046,7 @@
       modalTitle.textContent = project.title;
       modalDesc.textContent = project.desc;
       modalResult.innerHTML = `<i class="fas fa-chart-simple"></i> ${project.result}`;
-      modalDetail.textContent = project.detail;
+      modalDetail.textContent = project.detail || '';
       previewDiv.innerHTML = '';
       if (currentIframe) currentIframe = null;
       
@@ -1117,7 +1062,6 @@
         previewDiv.appendChild(wrapper);
         currentIframe = iframe;
       } else {
-        // Không có video, hiển thị ảnh (ưu tiên thumb, nếu không có thì thumbnail từ video, cuối cùng là placeholder)
         const img = document.createElement('img');
         let imgUrl = getProjectThumbnailUrl(project);
         if (!imgUrl) imgUrl = 'https://placehold.co/800x450/1e1e22/a855f7?text=No+Media';
@@ -1181,11 +1125,16 @@
       });
     }
 
-    // Smooth scroll
+    // Smooth scroll – đặc biệt xử lý "Giới thiệu" để cuộn lên đầu trang
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
         if (href === "#" || href === "") return;
+        if (href === "#about") {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
         const target = document.querySelector(href);
         if (target) {
           e.preventDefault();
